@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'completed_work.apps.CompletedWorkConfig',
 
     # 3d_party
+    'rest_framework'
     # 'phonenumber_field',
 ]
 
