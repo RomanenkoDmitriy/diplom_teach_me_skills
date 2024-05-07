@@ -28,4 +28,3 @@ class CommentsWork(AddDateTimeMixin):
     user = models.ForeignKey(get_user_model(), on_delete=models.SET_NULL, null=True, blank=True)
     comment = models.TextField()
     completed_work = models.ForeignKey('CompletedWork', on_delete=models.CASCADE)
-
