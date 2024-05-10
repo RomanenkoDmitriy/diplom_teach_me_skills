@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .nav {
+            margin-bottom: 20px;
+        }
+
+        .nav a {
+            display: inline-block;
+            margin-right: 10px;
+            padding: 5px 10px;
+            background-color: #337ab7;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 3px;
+        }
+
+        .nav a:hover {
+            background-color: #135e96;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #f2f2f2;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .image-container .image {
+            width: calc(50% - 10px);
+            margin-bottom: 10px;
+        }
+
+        .image-container .image img {
+            width: 100%;
+            height: auto;
+        }
+
+        .description {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="/completed_work/">Главная</a>
+    </div>
+
+    <div class="container">
+        <div>
+            <div class="title">{{ response.title }}</div>
+            
+            <div class="image-container">
+                <div class="image">
+                    <img src="{{ response.overall_plan.url }}" alt="No IMG">
+                </div>
+            
+                {% for foto in response.all_foto %}
+                    <div class="image">
+                        <img src="{{ foto.file.url }}" alt="No IMG">
+                    </div>
+                {% endfor %}
+            </div>
+            
+            <div class="description">{{ response.description }}</div>
+        </div>
+    </div>
+</body>
+</html>

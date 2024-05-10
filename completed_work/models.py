@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+# from django.urls import reverse
+
 
 
 class AddDateTimeMixin(models.Model):
@@ -14,6 +16,14 @@ class CompletedWork(AddDateTimeMixin):
     title = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)
     overall_plan = models.ImageField(upload_to='images/')
+
+    # def get_absolute_url(self):
+    #     return reverse('detail', kwargs={'pk': self.pk})
+
+    # @property
+    # def overall_plan_url(self):
+    #     if self.overall_plan and hasattr(self.overall_plan, 'url'):
+    #         return self.overall_plan.url
 
     def __str__(self):
         return self.title

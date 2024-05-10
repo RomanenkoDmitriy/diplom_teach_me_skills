@@ -2,46 +2,80 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-{#    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.js" integrity="sha512-pzH48Du/nTeqwQCGAND2+vKnF0LKKmD8NwDlGGeJPiCbm3E813ndGQZBqoUBWyD/b/tnzKDggSboccE1+XwYSA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>#}
-{#    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.8/axios.js" integrity="sha512-pmaEGtUAy7E5gRmwjLqQAD/QWw0dL4Z59b6b+2HQkqQwQ+HcPLLb9/KbUNo5zr10WuXmbivK9nYVZOyDkMgZMg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>#}
     <title>Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .navigation {
+            margin-bottom: 20px;
+        }
+
+        .navigation a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #337ab7;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .navigation a:hover {
+            background-color: #23527c;
+        }
+
+        .item {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .item a {
+            color: #337ab7;
+            text-decoration: none;
+        }
+
+        .item a:hover {
+            text-decoration: underline;
+        }
+
+        .item img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-{#{% verbatim %}#}
-{#<div class="container" id="comp_work">#}
-{#    #}
-{#    <div v-for="order in dat">#}
-{#        id = {{ order.id }}#}
-{#        title = {{ order.title }}#}
-{#        description = {{ order.description }}#}
-{#        <img src=order.overall_plan>#}
-{#        overall_plan = {{ order.overall_plan }}#}
-{# #}
-{#        <br>#}
-{#        #}
-{#    </div>#}
-{#    #}
-{#</div>#}
-{#{% endverbatim %}#}
-<div>
-    <a href="http://127.0.0.1:8000/completed_work/">Главная</a>
-</div>
-<br>
-<div>
-    
-    {% for resp in response %}
-    {{ resp.title }}<br>
-    {{ resp.description}}<br>
-    <img src="{{ resp.overall_plan }}" alt="No IMG">    
-    <br>
-    {{ resp.overall_plan }}    
-    <br>
-    {% endfor %}
-    
-</div>
+    <div class="container">
+        <div class="navigation">
+            <a href="/completed_work/">Главная</a>
+        </div>
 
-
-
-<script src="/static/js/comp_work.js"></script>
+        {% for resp in response %}
+            <div class="item">
+                <a href="{% url 'detail' resp.id %}">
+                    {{ resp.title }}<br>
+                    <img src="{{ resp.overall_plan.url }}" alt="No IMG">
+                    {{ resp.description }}<br>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
 </body>
 </html>

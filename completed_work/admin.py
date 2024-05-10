@@ -10,7 +10,7 @@ class CompletedWorkAdmin(admin.ModelAdmin):
 
 @admin.register(FotoWork)
 class FotoWorkAdmin(admin.ModelAdmin):
-    list_display = ['file', 'completed_work', 'created_at', 'updated_at']
+    list_display = ['id', 'file', 'completed_work', 'created_at', 'updated_at']
 
 
 @admin.register(CommentsWork)
