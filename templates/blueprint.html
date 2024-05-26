@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+    
+        {% for bl_pr in blueprints %}
+            <object><embed src ="{{ bl_pr.file_pdf }}"></object><br>
+            {{ bl_pr.file }}
+        {% endfor %}
+    </div>
+
+</body>
+</html>

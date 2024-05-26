@@ -63,8 +63,17 @@
 </head>
 <body>
     <div class="container">
+    <div>
+        {% if user %}
+        {{ user.username }}
+        {% endif %}
+    </div>
         <div class="navigation">
-            <a href="/completed_work/">Главная</a>
+            <a href="{% url 'complete_work' %}">Главная</a>
+            <a href="{% url 'logout_user' %}">Выйти</a>
+            <a href="{% url 'registration' %}">Регестрация</a>
+            <a href="{% url 'authenticate' %}">Войти</a>
+            <a href="{% url 'profile' %}">Профиль</a>
         </div>
 
         {% for resp in response %}

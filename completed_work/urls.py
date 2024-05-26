@@ -8,7 +8,6 @@ router = routers.SimpleRouter()
 router.register(r'', CompletedWorkViewSet)
 
 urlpatterns = [
-    path('', complete_work),
     path('api/', include(router.urls)),
     path('detail/<int:pk>/', completed_work_detail, name='detail'),
 ]

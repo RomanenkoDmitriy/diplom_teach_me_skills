@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # local
     'custom_user.apps.CustomUserConfig',
     'completed_work.apps.CompletedWorkConfig',
+    'blueprint.apps.BlueprintConfig',
 
     # 3d_party
     'rest_framework'

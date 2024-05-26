@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f2f2f2;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+              .navigation a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #337ab7;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .navigation a:hover {
+            background-color: #23527c;
+        }
+        
+        .messages {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+        
+        .messages li {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #e5e5e5;
+            border-radius: 3px;
+        }
+        
+        .messages .error {
+            background-color: #ffe0e0;
+            border-color: #ff9797;
+        }
+        
+        .login-form {
+            margin-bottom: 20px;
+        }
+        
+        .login-form .form-group {
+            margin-bottom: 10px;
+        }
+        
+        .login-form label {
+            display: block;
+            font-weight: bold;
+        }
+        
+        .login-form input[type="text"],
+        .login-form input[type="password"] {
+            width: 100%;
+            padding: 5px 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        
+        .login-form input[type="submit"] {
+            padding: 8px 16px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #337ab7;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        
+        .login-form input[type="submit"]:hover {
+            background-color: #135e96;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="navigation">
+            <a href="/completed_work/">Главная</a>
+        </div>
+    <br>
+        <div>
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+                            {{ message }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        
+        <div class="login-form">
+            <form method="post" action="{% url 'registration' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="id_username">Username:</label>
+                    {{ form.username }}
+                </div>
+                <div class="form-group">
+                    <label for="id_password">Password:</label>
+                    {{ form.password1 }}
+                </div>
+                <div class="form-group">
+                    <label for="id_confirm_password">Confirm Password:</label>
+                    {{ form.password2 }}
+                </div>
+                <input type="submit" value="Registration">
+            </form>
+        </div>  
+    </div>
+</body>
+</html>

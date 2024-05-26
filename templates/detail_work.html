@@ -67,12 +67,12 @@
 </head>
 <body>
     <div class="nav">
-        <a href="/completed_work/">Главная</a>
+        <a href="{% url 'complete_work' %}">Главная</a>
     </div>
 
     <div class="container">
         <div>
-            <div class="title">{{ response.title }}</div>
+            <div class="title">{{ response.completed_work.title }}</div>
             
             <div class="image-container">
                 <div class="image">
@@ -82,11 +82,20 @@
                 {% for foto in response.all_foto %}
                     <div class="image">
                         <img src="{{ foto.file.url }}" alt="No IMG">
+
                     </div>
                 {% endfor %}
             </div>
             
             <div class="description">{{ response.description }}</div>
+            <div>
+                {% if request.user.is_staff %}
+                
+                <a href="{% url 'pdf' response.completed_work.id %}"><button>PDF</button></a>
+                <a href="{% url 'file' response.completed_work.id %}"><button>FILE</button></a>
+                    
+                {% endif %}
+            </div>
         </div>
     </div>
 </body>
