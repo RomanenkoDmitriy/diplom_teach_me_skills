@@ -1,9 +1,10 @@
-from django.forms import ModelForm
+from django import forms
 
-from completed_work.models import CompletedWork
+from completed_work.models import CommentsWork
 
 
-class CompletedWorkForm(ModelForm):
+class CommentsWorkForm(forms.ModelForm):
+
     class Meta:
-        model = CompletedWork
-        fields = ['title', 'description', 'overall_plan']
+        model = CommentsWork
+        fields = ('comment',)

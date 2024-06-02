@@ -33,14 +33,14 @@ def authenticate_user(request):
                 return redirect('complete_work')
             else:
                 messages.info(request, 'Invalid password')
-                return render(request, 'authenticat.html', {"form": form})
+                return render(request, 'authenticat.html', {'form': form})
         else:
             messages.info(request, 'Invalid username')
-            return render(request, 'authenticat.html', {"form": form})
+            return render(request, 'authenticat.html', {'form': form})
 
     else:
         form = CustomUserAuthenticationForm()
-        return render(request, 'authenticat.html', {"form": form})
+        return render(request, 'authenticat.html', {'form': form})
 
 
 @login_required(login_url='authenticate')

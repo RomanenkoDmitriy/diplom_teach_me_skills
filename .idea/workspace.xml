@@ -5,21 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef6dd4dd-5c90-4d57-8b51-6b9d15f46d34" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/blueprint/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/custom_user/forms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/custom_user/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/authenticat.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/blueprint.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/profile.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/register.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/completed_work/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/completed_work/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blueprint/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/blueprint/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/completed_work/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/completed_work/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/completed_work/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/completed_work/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/completed_work/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/completed_work/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/custom_user/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/custom_user/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/custom_user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/custom_user/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/comp_work.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/comp_work.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/detail_work.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/detail_work.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -149,7 +140,8 @@
       <workItem from="1715427763973" duration="11717000" />
       <workItem from="1715513007395" duration="14306000" />
       <workItem from="1716031995581" duration="5272000" />
-      <workItem from="1716731803451" duration="7933000" />
+      <workItem from="1716731803451" duration="8494000" />
+      <workItem from="1717335364224" duration="5105000" />
     </task>
     <servers />
   </component>

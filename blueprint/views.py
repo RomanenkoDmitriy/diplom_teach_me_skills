@@ -1,11 +1,6 @@
-# from django.shortcuts import render
 from django.http import FileResponse
-import os
-from config.settings import MEDIA_ROOT
-
 
 from blueprint.models import Blueprint
-# from completed_work.models import CompletedWork
 
 
 def pdf_upload(request, pk):

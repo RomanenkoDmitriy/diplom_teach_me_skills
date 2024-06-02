@@ -72,14 +72,14 @@
 
     <div class="container">
         <div>
-            <div class="title">{{ response.completed_work.title }}</div>
+            <div class="title">{{ completed_work.title }}</div>
             
             <div class="image-container">
                 <div class="image">
-                    <img src="{{ response.overall_plan.url }}" alt="No IMG">
+                    <img src="{{ overall_plan.url }}" alt="No IMG">
                 </div>
             
-                {% for foto in response.all_foto %}
+                {% for foto in all_foto %}
                     <div class="image">
                         <img src="{{ foto.file.url }}" alt="No IMG">
 
@@ -87,14 +87,30 @@
                 {% endfor %}
             </div>
             
-            <div class="description">{{ response.description }}</div>
+            <div class="description">{{ description }}</div>
             <div>
                 {% if request.user.is_staff %}
                 
-                <a href="{% url 'pdf' response.completed_work.id %}"><button>PDF</button></a>
-                <a href="{% url 'file' response.completed_work.id %}"><button>FILE</button></a>
+                <a href="{% url 'pdf' completed_work.id %}"><button>PDF</button></a>
+                <a href="{% url 'file' completed_work.id %}"><button>FILE</button></a>
                     
                 {% endif %}
+            <div>
+                {% for comment in all_comments %}
+                    {{ comment.user.username }}<br>
+                    {{ comment.comment }}
+                    <br>
+                    <br>
+                {% endfor %}
+
+                <form method="post" action="{% url 'detail' completed_work.id %}">
+                    {% csrf_token %}
+                    {{ form_comment }}
+                     <input type="submit" value="add">
+                </form>   
+
+            </div>
+            
             </div>
         </div>
     </div>
