@@ -4,6 +4,9 @@ from django.contrib.auth.decorators import login_required
 
 from django.shortcuts import render, redirect, get_object_or_404
 
+import requests as r
+import json
+
 from custom_user.forms import CustomUserCreationForm, CustomUserAuthenticationForm, CustomUserChangeForm
 from custom_user.models import CustomUser
 
@@ -54,6 +57,11 @@ def user_profile(request):
         if form.is_valid():
             phone_number = form.cleaned_data['phone_number']
             hashed_phone_number = hash(phone_number)
+            my_url = 'http://127.0.0.1:8001/create_num/'
+            data = json.dumps({'hashed_phone_number': str(hashed_phone_number), 'phone_number': str(phone_number)})
+
+            req = r.post(my_url, data)
+            print(req)
 
             user.first_name = form.cleaned_data['first_name']
             user.last_name = form.cleaned_data['last_name']
@@ -67,13 +75,18 @@ def user_profile(request):
             messages.info(request, f'{form.errors}')
             return redirect('profile')
     else:
+
+        my_url = 'http://127.0.0.1:8001/items/'
+        params = {'hashed_phone_number': str(request.user.phone_number)}
+        req = r.get(my_url, params=params).json()['phone_numbers']
+
         resp = {
             'login': user.username,
             'email': user.email,
             'first_name': user.first_name,
             'last_name': user.last_name,
             'address': user.address,
-            'phone_number': user.phone_number,
+            'phone_number': req,
             'form': form
         }
         return render(request, 'profile.html', resp)

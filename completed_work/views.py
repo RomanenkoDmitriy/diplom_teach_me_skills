@@ -8,6 +8,7 @@ from completed_work.models import CompletedWork, CommentsWork
 from completed_work.serializers import CompletedWorkSerializer
 
 import requests as req
+import json
 
 
 class CompletedWorkViewSet(ReadOnlyModelViewSet):
@@ -51,6 +52,8 @@ def completed_work_detail(request, pk):
             return redirect('detail', pk=pk)
 
     else:
+        data = {'hello': 'hello'}
+        json_data = json.dumps(data)
+        r = req.post('http://127.0.0.1:8001/create_num/', json_data)
+        print(r)
         return render(request, 'detail_work.html', response)
-
-
