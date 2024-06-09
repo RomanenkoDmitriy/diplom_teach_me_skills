@@ -12,7 +12,9 @@ def registration_user(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = CustomUser.objects.create_user(username=form.cleaned_data['username'],
+                                                  password=form.cleaned_data['password1'])
+            login(request, user)
             return redirect('complete_work')
         else:
             messages.info(request, f'{form.errors}')
