@@ -46,7 +46,6 @@ INSTALLED_APPS = [
 
     # 3d_party
     'rest_framework'
-    # 'phonenumber_field',
 ]
 
 MIDDLEWARE = [

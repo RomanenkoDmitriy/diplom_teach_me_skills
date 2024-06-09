@@ -40,8 +40,12 @@ def completed_work_detail(request, pk):
 
         if form.is_valid():
             data = form.cleaned_data
-            comment = CommentsWork(user=request.user, comment=data['comment'], completed_work=completed_work)
-            comment.save()
+            if request.user.is_authenticated:
+                comment = CommentsWork(user=request.user, comment=data['comment'], completed_work=completed_work)
+                comment.save()
+            else:
+                comment = CommentsWork(user=None, comment=data['comment'], completed_work=completed_work)
+                comment.save()
             return redirect('detail', pk=pk)
 
     else:
