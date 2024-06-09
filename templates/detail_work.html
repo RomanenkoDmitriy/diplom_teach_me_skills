@@ -97,7 +97,12 @@
                 {% endif %}
             <div>
                 {% for comment in all_comments %}
-                    {{ comment.user.username }}<br>
+                    {% if comment.user %}
+                    <h3>{{ comment.user.username }}</h3><br>
+                    {% else %}
+                    <h3>Anonim</h3>
+                    
+                    {% endif %}
                     {{ comment.comment }}
                     <br>
                     <br>
