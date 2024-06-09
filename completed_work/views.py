@@ -7,6 +7,8 @@ from completed_work.forms import CommentsWorkForm
 from completed_work.models import CompletedWork, CommentsWork
 from completed_work.serializers import CompletedWorkSerializer
 
+import requests as req
+
 
 class CompletedWorkViewSet(ReadOnlyModelViewSet):
     queryset = CompletedWork.objects.all()
@@ -45,7 +47,6 @@ def completed_work_detail(request, pk):
             return redirect('detail', pk=pk)
 
     else:
-
         return render(request, 'detail_work.html', response)
 
 
