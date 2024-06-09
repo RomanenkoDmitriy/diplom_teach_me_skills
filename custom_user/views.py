@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 
 from django.shortcuts import render, redirect, get_object_or_404
@@ -52,11 +52,14 @@ def user_profile(request):
     if request.method == 'POST':
         form = CustomUserChangeForm(request.POST, request.FILES)
         if form.is_valid():
+            phone_number = form.cleaned_data['phone_number']
+            hashed_phone_number = hash(phone_number)
+
             user.first_name = form.cleaned_data['first_name']
             user.last_name = form.cleaned_data['last_name']
             user.email = form.cleaned_data['email']
             user.address = form.cleaned_data['address']
-            user.phone_number = form.cleaned_data['phone_number']
+            user.phone_number = hashed_phone_number
             user.save()
 
             return redirect('profile')
