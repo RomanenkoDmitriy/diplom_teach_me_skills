@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>User Registration</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -20,7 +20,7 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         
-              .navigation a {
+        .navigation a {
             display: inline-block;
             padding: 10px 20px;
             background-color: #337ab7;
@@ -51,6 +51,7 @@
         .messages .error {
             background-color: #ffe0e0;
             border-color: #ff9797;
+            font-weight: bold; /* Make error messages stand out */
         }
         
         .login-form {
@@ -58,32 +59,35 @@
         }
         
         .login-form .form-group {
-            margin-bottom: 10px;
+            margin-bottom: 20px; /* Increase spacing between form groups */
         }
         
         .login-form label {
             display: block;
             font-weight: bold;
+            margin-bottom: 5px; /* Add spacing below labels */
         }
         
         .login-form input[type="text"],
         .login-form input[type="password"] {
             width: 100%;
-            padding: 5px 10px;
-            font-size: 14px;
+            padding: 10px; /* Increase padding for better touch experience */
+            font-size: 16px; /* Increase font size for better readability */
             border: 1px solid #ccc;
-            border-radius: 3px;
+            border-radius: 5px;
+            box-sizing: border-box; /* Ensure input width includes padding and border */
         }
         
         .login-form input[type="submit"] {
-            padding: 8px 16px;
-            font-size: 16px;
+            padding: 12px 24px; /* Increase padding for larger button size */
+            font-size: 18px; /* Increase font size for better visibility */
             font-weight: bold;
             color: #fff;
             background-color: #337ab7;
             border: none;
-            border-radius: 3px;
+            border-radius: 5px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
         
         .login-form input[type="submit"]:hover {
@@ -95,7 +99,7 @@
 
     <div class="container">
         <div class="navigation">
-            <a href="/completed_work/">Главная</a>
+            <a href={% url 'complete_work' %}>Главная</a>
         </div>
     <br>
         <div>

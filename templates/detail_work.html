@@ -2,122 +2,252 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Detail</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
+            background-color: #f7f7f7;
         }
 
-        .nav {
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 20px;
         }
 
-        .nav a {
-            display: inline-block;
-            margin-right: 10px;
-            padding: 5px 10px;
-            background-color: #337ab7;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 3px;
+        .username {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #007BFF;
+            background-color: #f0f8ff;
+            padding: 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
         }
 
-        .nav a:hover {
-            background-color: #135e96;
+        .navigation {
+            display: flex;
+            gap: 10px;
         }
+
+        .navigation a {
+            padding: 10px 15px;
+            color: #333;
+            text-decoration: none;
+            border-radius: 4px;
+            background-color: #e2e2e2;
+            transition: background-color 0.3s;
+        }
+
+        .navigation a:hover {
+            background-color: #d4d4d4;
+        }
+
+
 
         .container {
             max-width: 800px;
             margin: 0 auto;
-            background-color: #f2f2f2;
+            background-color: #fff;
             padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+
+
+
+
+
+
 
         .title {
             font-size: 24px;
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
+            text-align: center;
         }
 
         .image-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
 
         .image-container .image {
             width: calc(50% - 10px);
             margin-bottom: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .image-container .image img {
             width: 100%;
             height: auto;
+            display: block;
         }
 
         .description {
             margin-bottom: 20px;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #555;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .buttons a button {
+            padding: 10px 20px;
+            background-color: #337ab7;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .buttons a button:hover {
+            background-color: #135e96;
+        }
+
+        .comments {
+            margin-top: 20px;
+        }
+
+        .comment {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .comment h3 {
+            margin: 0 0 5px 0;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .comment p {
+            margin: 0;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .comment-form {
+            margin-top: 20px;
+        }
+
+        .comment-form form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .comment-form textarea {
+            padding: 10px;
+            font-size: 14px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .comment-form input[type="submit"] {
+            align-self: flex-end;
+            padding: 10px 20px;
+            background-color: #337ab7;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .comment-form input[type="submit"]:hover {
+            background-color: #135e96;
+        }
+        
+         .styled-textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: vertical;
+            min-height: 100px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
         }
     </style>
 </head>
 <body>
-    <div class="nav">
-        <a href="{% url 'complete_work' %}">Главная</a>
-    </div>
-
     <div class="container">
-        <div>
-            <div class="title">{{ completed_work.title }}</div>
-            
-            <div class="image-container">
-                <div class="image">
-                    <img src="{{ overall_plan.url }}" alt="No IMG">
-                </div>
-            
-                {% for foto in all_foto %}
-                    <div class="image">
-                        <img src="{{ foto.file.url }}" alt="No IMG">
-
-                    </div>
-                {% endfor %}
-            </div>
-            
-            <div class="description">{{ description }}</div>
-            <div>
-                {% if request.user.is_staff %}
-                
-                <a href="{% url 'pdf' completed_work.id %}"><button>PDF</button></a>
-                <a href="{% url 'file' completed_work.id %}"><button>FILE</button></a>
-                    
+    
+    <div class="header">
+            <div class="navigation">
+                <a href="{% url 'complete_work' %}">Главная</a>
+                <a href="{% url 'profile' %}">Профиль</a>
+                {% if not user %}
+                    <a href="{% url 'registration' %}">Регистрация</a>
+                    <a href="{% url 'authenticate' %}">Войти</a>
+                {% else %}
+                    <a href="{% url 'logout_user' %}">Выйти</a>
                 {% endif %}
-            <div>
-                {% for comment in all_comments %}
-                    {% if comment.user %}
-                    <h3>{{ comment.user.username }}</h3><br>
-                    {% else %}
-                    <h3>Anonim</h3>
-                    
-                    {% endif %}
-                    {{ comment.comment }}
-                    <br>
-                    <br>
-                {% endfor %}
-
-                <form method="post" action="{% url 'detail' completed_work.id %}">
-                    {% csrf_token %}
-                    {{ form_comment }}
-                     <input type="submit" value="add">
-                </form>   
-
             </div>
-            
+            <div class="username">
+                {% if user %}
+                    {{ user.username }}
+                {% endif %}
             </div>
         </div>
-    </div>
+        
+        <div class="image-container">
+            <div class="image">
+                <img src="{{ overall_plan.url }}" alt="No IMG">
+            </div>
+            
+            {% for foto in all_foto %}
+                <div class="image">
+                    <img src="{{ foto.file.url }}" alt="No IMG">
+                </div>
+            {% endfor %}
+        </div>
+        
+        <div class="description">{{ description }}</div>
+        
+        {% if request.user.is_staff %}
+            <div class="buttons">
+                <a href="{% url 'pdf' completed_work.id %}"><button>PDF</button></a>
+                <a href="{% url 'file' completed_work.id %}"><button>FILE</button></a>
+            </div>
+        {% endif %}
+        
+        <div class="comments">
+            {% for comment in all_comments %}
+                <div class="comment">
+                    {% if comment.user %}
+                        <h3>{{ comment.user.username }}</h3>
+                    {% else %}
+                        <h3>"Anonim"</h3>
+                    {% endif %}
+                    <p>{{ comment.comment }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        
+        <div class="comment-form">
+    <form method="post" action="{% url 'detail' completed_work.id %}">
+        {% csrf_token %}
+        {{ form_comment }}
+        <input type="submit" value="Add Comment">
+    </form>   
+</div>
+</div>
 </body>
-</html>

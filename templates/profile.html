@@ -2,32 +2,143 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f7f7f7;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .profile-info {
+            margin-bottom: 20px;
+        }
+
+        .profile-info label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .profile-info p {
+            margin: 5px 0;
+        }
+
+        .profile-info input[type="text"],
+        .profile-info input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            font-size: 14px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        .profile-info input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #337ab7;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .profile-info input[type="submit"]:hover {
+            background-color: #135e96;
+        }
+        
+                .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .username {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #007BFF;
+            background-color: #f0f8ff;
+            padding: 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .navigation {
+            display: flex;
+            gap: 10px;
+        }
+
+        .navigation a {
+            padding: 10px 15px;
+            color: #333;
+            text-decoration: none;
+            border-radius: 4px;
+            background-color: #e2e2e2;
+            transition: background-color 0.3s;
+        }
+
+        .navigation a:hover {
+            background-color: #d4d4d4;
+        }
+    </style>
 </head>
 <body>
-   <div>
-            {% if messages %}
-                <ul class="messages">
-                    {% for message in messages %}
-                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
-                            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
-                            {{ message }}
-                        </li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
+    <div class="container">
+        
+          <div class="header">
+            <div class="navigation">
+                <a href="{% url 'complete_work' %}">Главная</a>
+                <a href="{% url 'profile' %}">Профиль</a>
+                {% if not user %}
+                    <a href="{% url 'registration' %}">Регистрация</a>
+                    <a href="{% url 'authenticate' %}">Войти</a>
+                {% else %}
+                    <a href="{% url 'logout_user' %}">Выйти</a>
+                {% endif %}
+            </div>
+            <div class="username">
+                {% if user %}
+                    {{ user.username }}
+                {% endif %}
+            </div>
         </div>
-
-{{ login }}<br>
-{{ email }}<br>
-{{ first_name }}<br>
-{{ last_name }}<br>
-{{ address }}<br>
-{{ phone_number }}<br>
-<form method="post" action="{% url 'profile' %}">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Change">
-</form>
+        <h1>User Profile</h1>
+        <div class="profile-info">
+            <label for="email">Email:</label>
+            <p>{{ email }}</p>
+            <label for="first_name">First Name:</label>
+            <p>{{ first_name }}</p>
+            <label for="last_name">Last Name:</label>
+            <p>{{ last_name }}</p>
+            <label for="address">Address:</label>
+            <p>{{ address }}</p>
+            <label for="phone_number">Phone Number:</label>
+            <p>{{ phone_number }}</p>
+        </div>
+        <hr>
+        <h2>Update Profile</h2>
+        <form method="post" action="{% url 'profile' %}" class="profile-info">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Save Changes">
+        </form>
+    </div>
 </body>
 </html>

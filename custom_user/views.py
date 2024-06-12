@@ -75,10 +75,11 @@ def user_profile(request):
             messages.info(request, f'{form.errors}')
             return redirect('profile')
     else:
-
-        my_url = 'http://127.0.0.1:8001/items/'
-        params = {'hashed_phone_number': str(request.user.phone_number)}
-        req = r.get(my_url, params=params).json()['phone_numbers']
+        req = ''
+        if request.user.phone_number:
+            my_url = 'http://127.0.0.1:8001/items/'
+            params = {'hashed_phone_number': str(request.user.phone_number)}
+            req = r.get(my_url, params=params).json()['phone_numbers']
 
         resp = {
             'login': user.username,
