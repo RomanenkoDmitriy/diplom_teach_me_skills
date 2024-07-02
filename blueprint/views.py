@@ -10,8 +10,15 @@ def pdf_upload(request, pk):
     return FileResponse(file_pdf, as_attachment=True)
 
 
-def file_upload(request, pk):
+def dwg_upload(request, pk):
     obj = Blueprint.objects.get(comp_work_id=pk)
-    file = obj.file
+    file = obj.file_dwg
+
+    return FileResponse(file, as_attachment=True)
+
+
+def b3d_upload(request, pk):
+    obj = Blueprint.objects.get(comp_work_id=pk)
+    file = obj.file_b3d
 
     return FileResponse(file, as_attachment=True)

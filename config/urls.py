@@ -20,14 +20,13 @@ from django.contrib import admin
 from django.urls import path, include
 
 from completed_work.views import complete_work
-# from custom_user.views import registration_user
-
 
 urlpatterns = [
-    path('', complete_work, name='complete_work'),
-    path('admin/', admin.site.urls),
-    path('completed_work/', include('completed_work.urls')),
-    path('user/', include('custom_user.urls')),
-    path('blueprint/', include('blueprint.urls')),
+                  path('', complete_work, name='complete_work'),
+                  path('admin/', admin.site.urls),
+                  path('completed_work/', include('completed_work.urls')),
+                  path('user/', include('custom_user.urls')),
+                  path('blueprint/', include('blueprint.urls')),
+                  path('api/', include('api.urls')),
 
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

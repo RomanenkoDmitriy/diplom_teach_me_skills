@@ -2,6 +2,5 @@
 .idea/
 db.sqlite3
 .project
+__pycache__/
 
-../fastApiProject/phone_number/diplom_teach_me_skills.db
-../fastApiProject/phone_number/.project

@@ -225,7 +225,8 @@
         {% if request.user.is_staff %}
             <div class="buttons">
                 <a href="{% url 'pdf' completed_work.id %}"><button>PDF</button></a>
-                <a href="{% url 'file' completed_work.id %}"><button>FILE</button></a>
+                <a href="{% url 'file_dwg' completed_work.id %}"><button>DWG</button></a>
+                <a href="{% url 'file_b3d' completed_work.id %}"><button>B3D</button></a>
             </div>
         {% endif %}
         

@@ -39,10 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 'django.contrib.model.ContentType'
     # local
     'custom_user.apps.CustomUserConfig',
     'completed_work.apps.CompletedWorkConfig',
     'blueprint.apps.BlueprintConfig',
+    'api.apps.ApiConfig',
 
     # 3d_party
     'rest_framework'

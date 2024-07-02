@@ -1,28 +1,23 @@
 from django.shortcuts import render, redirect
-from rest_framework.viewsets import ReadOnlyModelViewSet
+from django.core.paginator import Paginator
 
 from completed_work.forms import CommentsWorkForm
-# from django.views.generic import
 
 from completed_work.models import CompletedWork, CommentsWork
-from completed_work.serializers import CompletedWorkSerializer
-
-import requests as req
-import json
-
-
-class CompletedWorkViewSet(ReadOnlyModelViewSet):
-    queryset = CompletedWork.objects.all()
-    serializer_class = CompletedWorkSerializer
 
 
 def complete_work(request):
     response = list(CompletedWork.objects.all())
+    paginator = Paginator(response, 10)
+    page = request.GET.get('page')
+    page_obj = paginator.get_page(page)
     if request.user.is_authenticated:
         user = request.user
     else:
         user = False
-    return render(request, 'comp_work.html', {'response': response, 'user': user})
+    return render(request, 'comp_work.html',
+                  {'user': user, 'page_obj': page_obj}
+                  )
 
 
 def completed_work_detail(request, pk):
@@ -52,8 +47,4 @@ def completed_work_detail(request, pk):
             return redirect('detail', pk=pk)
 
     else:
-        data = {'hello': 'hello'}
-        json_data = json.dumps(data)
-        r = req.post('http://127.0.0.1:8001/create_num/', json_data)
-        print(r)
         return render(request, 'detail_work.html', response)

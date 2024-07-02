@@ -1,7 +1,5 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-# from django.urls import reverse
-
 
 
 class AddDateTimeMixin(models.Model):
@@ -17,21 +15,16 @@ class CompletedWork(AddDateTimeMixin):
     description = models.TextField(null=True, blank=True)
     overall_plan = models.ImageField(upload_to='images/')
 
-    # def get_absolute_url(self):
-    #     return reverse('detail', kwargs={'pk': self.pk})
-
-    # @property
-    # def overall_plan_url(self):
-    #     if self.overall_plan and hasattr(self.overall_plan, 'url'):
-    #         return self.overall_plan.url
-
     def __str__(self):
         return self.title
 
+    class Meta:
+        ordering = ['-created_at']
+
 
 class FotoWork(AddDateTimeMixin):
-    file = models.FileField(upload_to='images/')
-    completed_work = models.ForeignKey('CompletedWork', on_delete=models.CASCADE)
+    file = models.ImageField(upload_to='images/')
+    completed_work = models.ForeignKey('CompletedWork', on_delete=models.CASCADE, related_name='foto')
 
 
 class CommentsWork(AddDateTimeMixin):
@@ -41,3 +34,6 @@ class CommentsWork(AddDateTimeMixin):
 
     def __str__(self):
         return self.comment
+
+    class Meta:
+        ordering = ['-created_at']
